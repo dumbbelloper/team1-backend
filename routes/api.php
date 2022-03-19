@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('guest')
+    ->controller('App\\Http\\Controllers\\Auth\\GuestController')
+    ->group(function () {
+        Route::post('/register', 'store');
+        Route::post('/login', 'login');
+        Route::post('/forgot-password', 'reset_password_link');
+    });
