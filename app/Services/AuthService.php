@@ -27,9 +27,9 @@ class AuthService
         ], 201);
     }
 
-    public function login(array $params)
+    public function login(bool $attempted)
     {
-        if (!Auth::attempt($params)) {
+        if (!$attempted) {
             return response()->json([
                 'message' => 'Not Found Matched User',
                 'error' => [

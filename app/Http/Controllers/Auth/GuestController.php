@@ -34,7 +34,7 @@ class GuestController extends Controller
      */
     public function login(SigninRequest $request): JsonResponse
     {
-        return $this->service->login($request->validated());
+        return $this->service->login($request->authenticate());
     }
 
     public function reset_password_link()
