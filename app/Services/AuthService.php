@@ -21,7 +21,7 @@ class AuthService
         // VerificationNotificationJob::dispatch($user);
 
         return response()->json([
-            ...$user->toArray(),
+            ...$user->only(['id', 'name', 'email']),
             'access_token' => $user->createToken('auth_token')->plainTextToken,
             'token_type' => 'Bearer',
         ], 201);
@@ -41,7 +41,7 @@ class AuthService
         $user = Auth::user();
 
         return response()->json([
-            ...$user->toArray(),
+            ...$user->only(['id', 'name', 'email']),
             'access_token' => $user->createToken('auth_token')->plainTextToken,
             'token_type' => 'Bearer',
         ]);
