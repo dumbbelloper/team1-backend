@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LectureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +27,10 @@ Route::middleware('guest')
         Route::post('/login', 'login');
         Route::post('/forgot-password', 'reset_password_link');
     });
+
+
+
+Route::group(['middleware' => []], function(){
+    Route::resource('categories', CategoryController::class);
+    Route::resource('lectures', LectureController::class);
+});
